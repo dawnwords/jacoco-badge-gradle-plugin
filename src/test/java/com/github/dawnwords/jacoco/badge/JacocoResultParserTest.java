@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
 import org.apache.commons.io.IOUtils;
+import org.gradle.internal.impldep.com.google.common.collect.ImmutableMap;
 import org.testng.annotations.Test;
 
 public class JacocoResultParserTest {
@@ -16,7 +17,9 @@ public class JacocoResultParserTest {
     IOUtils.copy(JacocoResultParserTest.class.getClassLoader()
         .getResourceAsStream("sample-jacoco-report.xml"), Files.newOutputStream(sampleReport));
     Map<String, JacocoBadgePercentageResult> result = new JacocoResultParser(
-        new JacocoBadgeGenerateSetting().setJacocoReportPath(sampleReport.toString()))
+        new JacocoBadgeGenerateSetting()
+            .setLimit(ImmutableMap.of("branch", 90))
+            .setJacocoReportPath(sampleReport.toString()))
         .getJacocoResults();
     assertEquals(result.size(), 6);
     assertEquals(result.get("BRANCH").toString(), "BRANCH:100%");

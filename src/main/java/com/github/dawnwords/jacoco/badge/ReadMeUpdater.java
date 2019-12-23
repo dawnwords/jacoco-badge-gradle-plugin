@@ -26,6 +26,9 @@ class ReadMeUpdater {
 
   void updateReadme() throws Exception {
     final Map<String, JacocoBadgePercentageResult> results = parser.getJacocoResults();
+
+    results.values().forEach(JacocoBadgePercentageResult::verifyLimit);
+
     final Path readmePath = Paths.get(setting.getReadmePath());
     Files.write(readmePath, Files.readAllLines(readmePath).stream()
         .map(l -> {

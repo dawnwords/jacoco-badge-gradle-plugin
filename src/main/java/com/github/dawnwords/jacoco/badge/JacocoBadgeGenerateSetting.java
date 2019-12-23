@@ -2,6 +2,7 @@ package com.github.dawnwords.jacoco.badge;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Map;
 import org.gradle.api.GradleException;
 import org.gradle.api.Project;
 
@@ -11,6 +12,7 @@ public class JacocoBadgeGenerateSetting {
 
   private String jacocoReportPath;
   private String readmePath;
+  private Map<String, Integer> limit;
 
   public String getJacocoReportPath() {
     return jacocoReportPath;
@@ -27,6 +29,15 @@ public class JacocoBadgeGenerateSetting {
 
   public JacocoBadgeGenerateSetting setReadmePath(String readmePath) {
     this.readmePath = readmePath;
+    return this;
+  }
+
+  public Map<String, Integer> getLimit() {
+    return limit;
+  }
+
+  public JacocoBadgeGenerateSetting setLimit(Map<String, Integer> limit) {
+    this.limit = limit;
     return this;
   }
 

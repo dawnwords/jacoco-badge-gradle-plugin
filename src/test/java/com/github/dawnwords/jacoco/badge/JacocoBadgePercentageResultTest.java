@@ -5,9 +5,11 @@ import static com.github.dawnwords.jacoco.badge.JacocoBadgePercentageResult.Type
 import static com.github.dawnwords.jacoco.badge.JacocoBadgePercentageResult.Type.INSTRUCTION;
 import static com.github.dawnwords.jacoco.badge.JacocoBadgePercentageResult.Type.LINE;
 import static org.mockito.Mockito.when;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 import com.github.dawnwords.jacoco.badge.JacocoBadgePercentageResult.Type;
+import org.gradle.api.GradleException;
+import org.gradle.internal.impldep.com.google.common.collect.ImmutableMap;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.testng.annotations.BeforeMethod;
@@ -52,13 +54,23 @@ public class JacocoBadgePercentageResultTest {
 
   @Test(dataProvider = "test")
   public void test(Type resultType, String coveredValue, String missedValue,
-      String expectedString, String expectedBadge) {
+                   String expectedString, String expectedBadge) {
     when(type.getNodeValue()).thenReturn(resultType.name());
     when(covered.getNodeValue()).thenReturn(coveredValue);
     when(missed.getNodeValue()).thenReturn(missedValue);
 
     JacocoBadgePercentageResult result = new JacocoBadgePercentageResult(attr);
+    result.verifyLimit();
     assertEquals(result.toString(), expectedString);
     assertEquals(result.badgeUrl(), expectedBadge);
+  }
+
+  @Test(expectedExceptions = GradleException.class, expectedExceptionsMessageRegExp =
+      "BRANCH coverage limit not satisfied, expect at least 90%, got 70%")
+  public void testLimitViolation() {
+    when(type.getNodeValue()).thenReturn(BRANCH.name());
+    when(covered.getNodeValue()).thenReturn("70");
+    when(missed.getNodeValue()).thenReturn("30");
+    new JacocoBadgePercentageResult(attr, ImmutableMap.of(BRANCH.name(), 90)).verifyLimit();
   }
 }

@@ -1,14 +1,13 @@
 package com.github.dawnwords.jacoco.badge;
 
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
 import org.gradle.api.GradleException;
 import org.gradle.api.Project;
-import org.gradle.api.plugins.ExtensionContainer;
+import org.gradle.internal.impldep.com.google.common.collect.ImmutableMap;
 import org.gradle.internal.impldep.com.google.common.io.Files;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -30,8 +29,10 @@ public class JacocoBadgeGenerateSettingTest {
     JacocoBadgeGenerateSetting setting = new JacocoBadgeGenerateSetting();
     setting.setJacocoReportPath("jacoco-report");
     setting.setReadmePath("readme");
+    setting.setLimit(ImmutableMap.of("branch", 90));
     assertEquals(setting.getJacocoReportPath(), "jacoco-report");
     assertEquals(setting.getReadmePath(), "readme");
+    assertEquals(setting.getLimit(), ImmutableMap.of("branch", 90));
   }
 
   @Test
@@ -80,6 +81,14 @@ public class JacocoBadgeGenerateSettingTest {
   public void testCheckOnNoReadMePath() {
     when(project.getProjectDir()).thenReturn(Files.createTempDir());
     new JacocoBadgeGenerateSetting().setJacocoReportPath("jacoco-report").setDefault(project);
+  }
+
+  @Test(expectedExceptions = GradleException.class, expectedExceptionsMessageRegExp =
+      "no default readmePath found, please specified it in jacocoBadgeGenSetting")
+  public void testCheckOnEmptyReadMePath() {
+    when(project.getProjectDir()).thenReturn(Files.createTempDir());
+    new JacocoBadgeGenerateSetting().setJacocoReportPath("jacoco-report").setReadmePath("")
+        .setDefault(project);
   }
 
 }
