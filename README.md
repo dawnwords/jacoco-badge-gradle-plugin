@@ -52,13 +52,15 @@ coverage report shown as following
 ### Plugin Settings
 
 There's a configuration point for this plugin: `jacocoBadgeGenSetting` in your `build.gradle`.
-You can manually specify `jacocoReportPath` and `readmePath` and their default value is shown 
+You can manually specify `jacocoReportPath`, `readmePath` and `limit` and their default value is shown 
 as following:
 
 ```groovy
 jacocoBadgeGenSetting {
     jacocoReportPath  "$buildDir/reports/jacoco/test/jacocoTestReport.xml"
     readmePath "$projectDir/README.md"
+    // since v0.2.0, percentage limitation (0-100) for different type of coverage
+    limit = ['instruction': 0, 'branch': 0, 'line': 0, 'method': 0, 'class': 0]
 }
 ```
 
