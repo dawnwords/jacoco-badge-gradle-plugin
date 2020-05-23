@@ -65,6 +65,7 @@ public class ReadMeUpdaterTest {
         + "![LINE](https://img.shields.io/badge/line--coverage-80%25-brightgreen.svg)\n"
         + "![BRANCH](branch-badge-url)\n"
         + "![COMPLEXITY](complexity-badge-url)\n"
+        + "Some ![COMPLEXITY](complexity-badge-url) inline consecutive ![BRANCH](branch-badge-url)![COMPLEXITY](complexity-badge-url) badges\n"
         + "\n"
         + "## some other description\n"
         + "blah blah blah blah blah blah");

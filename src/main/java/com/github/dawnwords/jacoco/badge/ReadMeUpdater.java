@@ -13,7 +13,7 @@ class ReadMeUpdater {
   private JacocoBadgeGenerateSetting setting;
   private JacocoResultParser parser;
 
-  private static final Pattern BADGE_PATTERN = Pattern.compile("^!\\[([^]]+)]\\(([^)]+)\\)$");
+  private static final Pattern BADGE_PATTERN = Pattern.compile("!\\[([^]]+)]\\(([^)]+)\\)");
 
   ReadMeUpdater(JacocoBadgeGenerateSetting setting) {
     this(setting, new JacocoResultParser(setting));
@@ -32,15 +32,17 @@ class ReadMeUpdater {
     final Path readmePath = Paths.get(setting.getReadmePath());
     Files.write(readmePath, Files.readAllLines(readmePath).stream()
         .map(l -> {
+          final StringBuffer stringBuffer = new StringBuffer();
           Matcher matcher = BADGE_PATTERN.matcher(l);
-          if (matcher.find()) {
+          while (matcher.find()) {
             String type = matcher.group(1);
             JacocoBadgePercentageResult result = results.get(type);
             if (result != null) {
-              return matcher.replaceFirst(String.format("![$1](%s)", result.badgeUrl()));
+                matcher.appendReplacement(stringBuffer, String.format("![$1](%s)", result.badgeUrl()));
             }
           }
-          return l;
+          matcher.appendTail(stringBuffer);
+          return stringBuffer.toString();
         })
         .collect(Collectors.toList()));
   }
