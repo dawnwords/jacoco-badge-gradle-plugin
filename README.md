@@ -66,5 +66,4 @@ jacocoBadgeGenSetting {
 
 ### Coverage Badge Type
 Jacoco gives us 6 coverage metrics in its test report, namely `INSTRUCTION`, `BRANCH`, `LINE`, 
-`COMPLEXITY`, `METHOD` and `CLASS`. Your badge link should be place **within a new line** and 
-the `alt` part should be **one of the 6 values** so that this plugin can detect them.
+`COMPLEXITY`, `METHOD` and `CLASS`. The `alt` part should be **one of the 6 values** so that this plugin can detect them.
