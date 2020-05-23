@@ -3,6 +3,9 @@ package com.github.dawnwords.jacoco.badge;
 import static org.mockito.Mockito.when;
 import static org.testng.Assert.assertEquals;
 
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.testng.annotations.BeforeMethod;
@@ -26,15 +29,19 @@ public class JacocoBadgeComplexityResultTest {
 
   @DataProvider
   private Object[][] test() {
+	
+	final char decimalSeparatorChar = new DecimalFormatSymbols(Locale.getDefault()).getDecimalSeparator();  
+	final String decimalSeparator = new String(new char[]{decimalSeparatorChar});
+	  
     return new Object[][]{
-        new Object[]{120, 0, 60, "COMPLEXITY:2.00",
-            "https://img.shields.io/badge/complexity-2.00-brightgreen.svg"},
-        new Object[]{120, 0, 8, "COMPLEXITY:15.00",
-            "https://img.shields.io/badge/complexity-15.00-yellow.svg"},
-        new Object[]{120, 0, 4, "COMPLEXITY:30.00",
-            "https://img.shields.io/badge/complexity-30.00-orange.svg"},
-        new Object[]{120, 0, 2, "COMPLEXITY:60.00",
-            "https://img.shields.io/badge/complexity-60.00-red.svg"},
+        new Object[]{120, 0, 60, "COMPLEXITY:2" + decimalSeparator + "00",
+            "https://img.shields.io/badge/complexity-2" + decimalSeparator + "00-brightgreen.svg"},
+        new Object[]{120, 0, 8, "COMPLEXITY:15" + decimalSeparator + "00",
+            "https://img.shields.io/badge/complexity-15" + decimalSeparator + "00-yellow.svg"},
+        new Object[]{120, 0, 4, "COMPLEXITY:30" + decimalSeparator + "00",
+            "https://img.shields.io/badge/complexity-30" + decimalSeparator + "00-orange.svg"},
+        new Object[]{120, 0, 2, "COMPLEXITY:60" + decimalSeparator + "00",
+            "https://img.shields.io/badge/complexity-60" + decimalSeparator + "00-red.svg"},
     };
   }
 
