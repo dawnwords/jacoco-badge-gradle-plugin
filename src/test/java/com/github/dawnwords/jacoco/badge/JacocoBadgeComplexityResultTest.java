@@ -1,16 +1,15 @@
 package com.github.dawnwords.jacoco.badge;
 
 import static org.mockito.Mockito.when;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
-import com.github.dawnwords.jacoco.badge.JacocoBadgePercentageResult.Type;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
+
+import com.github.dawnwords.jacoco.badge.JacocoBadgePercentageResult.Type;
 
 public class JacocoBadgeComplexityResultTest {
 

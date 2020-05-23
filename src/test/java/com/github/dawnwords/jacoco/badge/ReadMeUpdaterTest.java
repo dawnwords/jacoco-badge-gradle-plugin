@@ -1,12 +1,14 @@
 package com.github.dawnwords.jacoco.badge;
 
-import static com.github.dawnwords.jacoco.badge.JacocoBadgePercentageResult.Type.*;
+import static com.github.dawnwords.jacoco.badge.JacocoBadgePercentageResult.Type.BRANCH;
+import static com.github.dawnwords.jacoco.badge.JacocoBadgePercentageResult.Type.CLASS;
+import static com.github.dawnwords.jacoco.badge.JacocoBadgePercentageResult.Type.COMPLEXITY;
 import static org.mockito.Mockito.when;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.stream.Collectors;
+
 import org.apache.commons.io.IOUtils;
 import org.gradle.internal.impldep.com.google.common.collect.ImmutableMap;
 import org.mockito.Mock;
