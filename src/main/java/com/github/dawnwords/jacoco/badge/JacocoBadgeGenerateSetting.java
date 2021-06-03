@@ -12,7 +12,7 @@ public class JacocoBadgeGenerateSetting {
 
   private String jacocoReportPath;
   private String readmePath;
-  private Map<String, Double> limit;
+  private Map<String, Number> limit;
 
   public String getJacocoReportPath() {
     return jacocoReportPath;
@@ -32,11 +32,11 @@ public class JacocoBadgeGenerateSetting {
     return this;
   }
 
-  public Map<String, Double> getLimit() {
+  public Map<String, Number> getLimit() {
     return limit;
   }
 
-  public JacocoBadgeGenerateSetting setLimit(Map<String, Double> limit) {
+  public JacocoBadgeGenerateSetting setLimit(Map<String, Number> limit) {
     this.limit = limit;
     return this;
   }
