@@ -7,22 +7,22 @@ import org.w3c.dom.NamedNodeMap;
 
 class JacocoBadgePercentageResult {
 
-  private Type type;
-  private int covered;
-  private int missed;
-  private int limit;
+  private final Type type;
+  private final int covered;
+  private final int missed;
+  private final double limit;
 
   JacocoBadgePercentageResult(NamedNodeMap attr) {
     this(attr, Collections.emptyMap());
   }
 
   JacocoBadgePercentageResult(NamedNodeMap attr,
-                              Map<String, Integer> limit) {
+                              Map<String, Double> limit) {
     final String type = attr.getNamedItem("type").getNodeValue();
     this.type = Type.valueOf(type);
     this.covered = Integer.parseInt(attr.getNamedItem("covered").getNodeValue());
     this.missed = Integer.parseInt(attr.getNamedItem("missed").getNodeValue());
-    this.limit = limit.getOrDefault(type, 0);
+    this.limit = limit.getOrDefault(type, 0d);
   }
 
   JacocoBadgePercentageResult(JacocoBadgePercentageResult that) {
@@ -41,7 +41,8 @@ class JacocoBadgePercentageResult {
     final int percent = percent();
     if (percent < limit) {
       throw new GradleException(String.format(
-          "%s coverage limit not satisfied, expect at least %d%%, got %d%%", type, limit, percent));
+          "%s coverage limit not satisfied, expect at least %.2f%%, got %d%%", type, limit,
+          percent));
     }
   }
 
@@ -70,7 +71,7 @@ class JacocoBadgePercentageResult {
     return missed;
   }
 
-  public int limit() {
+  public Double limit() {
     return limit;
   }
 

@@ -66,11 +66,11 @@ public class JacocoBadgePercentageResultTest {
   }
 
   @Test(expectedExceptions = GradleException.class, expectedExceptionsMessageRegExp =
-      "BRANCH coverage limit not satisfied, expect at least 90%, got 70%")
+      "BRANCH coverage limit not satisfied, expect at least 90.10%, got 70%")
   public void testLimitViolation() {
     when(type.getNodeValue()).thenReturn(BRANCH.name());
     when(covered.getNodeValue()).thenReturn("70");
     when(missed.getNodeValue()).thenReturn("30");
-    new JacocoBadgePercentageResult(attr, ImmutableMap.of(BRANCH.name(), 90)).verifyLimit();
+    new JacocoBadgePercentageResult(attr, ImmutableMap.of(BRANCH.name(), 90.1)).verifyLimit();
   }
 }
