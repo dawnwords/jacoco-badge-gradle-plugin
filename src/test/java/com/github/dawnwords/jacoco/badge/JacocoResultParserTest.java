@@ -18,7 +18,7 @@ public class JacocoResultParserTest {
         .getResourceAsStream("sample-jacoco-report.xml"), Files.newOutputStream(sampleReport));
     Map<String, JacocoBadgePercentageResult> result = new JacocoResultParser(
         new JacocoBadgeGenerateSetting()
-            .setLimit(ImmutableMap.of("branch", 90))
+            .setLimit(ImmutableMap.of("branch", 90.0))
             .setJacocoReportPath(sampleReport.toString()))
         .getJacocoResults();
     assertEquals(result.size(), 6);

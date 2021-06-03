@@ -29,10 +29,10 @@ public class JacocoBadgeGenerateSettingTest {
     JacocoBadgeGenerateSetting setting = new JacocoBadgeGenerateSetting();
     setting.setJacocoReportPath("jacoco-report");
     setting.setReadmePath("readme");
-    setting.setLimit(ImmutableMap.of("branch", 90));
+    setting.setLimit(ImmutableMap.of("branch", 90.0));
     assertEquals(setting.getJacocoReportPath(), "jacoco-report");
     assertEquals(setting.getReadmePath(), "readme");
-    assertEquals(setting.getLimit(), ImmutableMap.of("branch", 90));
+    assertEquals(setting.getLimit(), ImmutableMap.of("branch", 90.0));
   }
 
   @Test

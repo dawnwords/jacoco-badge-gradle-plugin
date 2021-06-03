@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 
 class ReadMeUpdater {
 
-  private JacocoBadgeGenerateSetting setting;
-  private JacocoResultParser parser;
+  private final JacocoBadgeGenerateSetting setting;
+  private final JacocoResultParser parser;
 
   private static final Pattern BADGE_PATTERN = Pattern.compile("^!\\[([^]]+)]\\(([^)]+)\\)$");
 

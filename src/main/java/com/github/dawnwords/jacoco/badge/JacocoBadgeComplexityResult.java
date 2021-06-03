@@ -2,7 +2,7 @@ package com.github.dawnwords.jacoco.badge;
 
 class JacocoBadgeComplexityResult extends JacocoBadgePercentageResult {
 
-  private JacocoBadgePercentageResult method;
+  private final JacocoBadgePercentageResult method;
 
   JacocoBadgeComplexityResult(JacocoBadgePercentageResult that,
       JacocoBadgePercentageResult method) {
