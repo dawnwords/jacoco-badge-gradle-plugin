@@ -41,14 +41,14 @@ public class JacocoBadgePercentageResultTest {
   @DataProvider
   public Object[][] test() {
     return new Object[][]{
-        new Object[]{INSTRUCTION, "100", "0", "INSTRUCTION:100%",
-            "https://img.shields.io/badge/instruction--coverage-100%25-brightgreen.svg"},
-        new Object[]{BRANCH, "70", "30", "BRANCH:70%",
-            "https://img.shields.io/badge/branch--coverage-70%25-yellow.svg"},
-        new Object[]{CLASS, "50", "50", "CLASS:50%",
-            "https://img.shields.io/badge/class--coverage-50%25-orange.svg"},
-        new Object[]{LINE, "30", "70", "LINE:30%",
-            "https://img.shields.io/badge/line--coverage-30%25-red.svg"},
+        new Object[]{INSTRUCTION, "100", "0", "INSTRUCTION:100.00%",
+            "https://img.shields.io/badge/instruction--coverage-100.00%25-brightgreen.svg"},
+        new Object[]{BRANCH, "70", "30", "BRANCH:70.00%",
+            "https://img.shields.io/badge/branch--coverage-70.00%25-yellow.svg"},
+        new Object[]{CLASS, "50", "50", "CLASS:50.00%",
+            "https://img.shields.io/badge/class--coverage-50.00%25-orange.svg"},
+        new Object[]{LINE, "30", "70", "LINE:30.00%",
+            "https://img.shields.io/badge/line--coverage-30.00%25-red.svg"},
     };
   }
 
@@ -66,7 +66,7 @@ public class JacocoBadgePercentageResultTest {
   }
 
   @Test(expectedExceptions = GradleException.class, expectedExceptionsMessageRegExp =
-      "BRANCH coverage limit not satisfied, expect at least 90.10%, got 70%")
+      "BRANCH coverage limit not satisfied, expect at least 90.10%, got 70.00%")
   public void testLimitViolation() {
     when(type.getNodeValue()).thenReturn(BRANCH.name());
     when(covered.getNodeValue()).thenReturn("70");
