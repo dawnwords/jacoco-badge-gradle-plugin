@@ -3,7 +3,6 @@ package com.github.dawnwords.jacoco.badge;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 
-@SuppressWarnings("unused")
 public class JacocoBadgePlugin implements Plugin<Project> {
 
   @Override

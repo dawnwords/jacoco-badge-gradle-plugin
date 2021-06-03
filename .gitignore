@@ -8,3 +8,8 @@ build
 .idea
 *.iml
 out
+.project
+.metadata
+bin/
+.classpath
+.settings/
