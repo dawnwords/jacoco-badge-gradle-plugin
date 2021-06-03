@@ -12,12 +12,12 @@ plugins {
     id 'maven'
     id 'jacoco'
     id 'maven-publish'
-    id 'com.gradle.plugin-publish' version '0.10.0'
+    id "com.gradle.plugin-publish" version "0.13.0"
     id 'com.github.kt3k.coveralls' version '2.8.2'
 }
 
 group = 'com.github.dawnwords'
-version = '0.2.1'
+version = '0.2.2'
 
 repositories {
     jcenter()
