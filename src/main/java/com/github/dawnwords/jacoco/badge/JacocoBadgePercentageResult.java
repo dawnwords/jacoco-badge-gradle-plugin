@@ -33,21 +33,21 @@ class JacocoBadgePercentageResult {
   }
 
   String badgeUrl() {
-    return String.format("https://img.shields.io/badge/%s-%d%%25-%s.svg",
+    return String.format("https://img.shields.io/badge/%s-%.2f%%25-%s.svg",
         type.name().toLowerCase() + "--coverage", percent(), color());
   }
 
   void verifyLimit() {
-    final int percent = percent();
+    final double percent = percent();
     if (percent < limit) {
       throw new GradleException(String.format(
-          "%s coverage limit not satisfied, expect at least %.2f%%, got %d%%", type, limit,
+          "%s coverage limit not satisfied, expect at least %.2f%%, got %.2f%%", type, limit,
           percent));
     }
   }
 
   private String color() {
-    int percent = percent();
+    double percent = percent();
     if (percent >= 80) {
       return "brightgreen";
     } else if (percent > 60) {
@@ -75,13 +75,13 @@ class JacocoBadgePercentageResult {
     return limit;
   }
 
-  private int percent() {
-    return (int) (100.0 * covered / (covered + missed));
+  private double percent() {
+    return 100.0 * covered / (covered + missed);
   }
 
   @Override
   public String toString() {
-    return type + ":" + percent() + "%";
+    return String.format("%s:%.2f%%", type, percent());
   }
 
   enum Type {
