@@ -17,12 +17,12 @@ class JacocoBadgePercentageResult {
   }
 
   JacocoBadgePercentageResult(NamedNodeMap attr,
-                              Map<String, Double> limit) {
+                              Map<String, Number> limit) {
     final String type = attr.getNamedItem("type").getNodeValue();
     this.type = Type.valueOf(type);
     this.covered = Integer.parseInt(attr.getNamedItem("covered").getNodeValue());
     this.missed = Integer.parseInt(attr.getNamedItem("missed").getNodeValue());
-    this.limit = limit.getOrDefault(type, 0d);
+    this.limit = limit.getOrDefault(type, 0d).doubleValue();
   }
 
   JacocoBadgePercentageResult(JacocoBadgePercentageResult that) {
@@ -71,7 +71,7 @@ class JacocoBadgePercentageResult {
     return missed;
   }
 
-  public Double limit() {
+  public double limit() {
     return limit;
   }
 

@@ -20,7 +20,7 @@ import org.w3c.dom.NodeList;
 
 class JacocoResultParser {
 
-  private JacocoBadgeGenerateSetting setting;
+  private final JacocoBadgeGenerateSetting setting;
 
   JacocoResultParser(JacocoBadgeGenerateSetting setting) {
     this.setting = setting;
@@ -30,7 +30,7 @@ class JacocoResultParser {
       throws Exception {
     final Path reportPath = Paths.get(setting.getJacocoReportPath());
     final HashMap<String, JacocoBadgePercentageResult> results = new HashMap<>();
-    final Map<String, Double> limit = Optional.ofNullable(setting.getLimit()).orElse(
+    final Map<String, Number> limit = Optional.ofNullable(setting.getLimit()).orElse(
         Collections.emptyMap()).entrySet().stream().collect(Collectors.toMap(
         e -> e.getKey().toUpperCase(), Entry::getValue
     ));
