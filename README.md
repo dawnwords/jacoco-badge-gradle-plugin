@@ -12,11 +12,20 @@ your code coverage on code change.
 plugins {
     id 'java'
     id 'jacoco'
-    id 'com.github.dawnwords.jacoco.badge'
+    id 'com.github.dawnwords.jacoco.badge' version '0.2.0'
+}
+```
+2. Add xml reports to jacoco task in `build.gradle`, for example:
+
+```groovy
+jacocoTestReport {
+  reports {
+    xml.enabled true 
+  }
 }
 ```
 
-2. Put the badge link placeholder in your `README.md`
+3. Put the badge link placeholder in your `README.md`
 
 ```markdown
 # Your Project Name
